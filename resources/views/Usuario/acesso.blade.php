@@ -220,15 +220,15 @@ select{
             <h1>Controle Financeiro</h1>
         </div>
         <div class="menu">
-        <a href="{{route('saldo')}}">Ver saldo</a>
-        <a href="{{route('relatorio')}}">relatorios</a>
-        <a href="#">Sair</a>
+        {{-- <a href="{{route('saldo')}}">Ver saldo</a>
+        <a href="{{route('relatorio')}}">relatorios</a> --}}
+        <a href="{{route('sair')}}">Sair</a>
         </div>
     </nav> 
     <section>
             <div class="valor">
-                <h2 style="font-size:23px">Cadastrar valor:</h2>
-                <form action="" method="POST">
+                <h2 style="font-size:23px">Cadastrar Receita:</h2>
+                <form action="{{route('receita')}}" method="POST">
                 @csrf
                     <label for="data">Data:</label>
                     <input type="date" name="data">

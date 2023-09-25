@@ -211,9 +211,9 @@
             <h1>Controle Financeiro</h1>
         </div>
         <div class="menu">
-            <a href="{{route('home')}}">Home</a>
+            {{-- <a href="{{route('home')}}">Home</a> --}}
             <a href="{{route('login')}}">Login</a>
-            <a href="{{route('cadastro')}}">Cadastre-se</a>
+            <a href="{{route('create')}}">Cadastre-se</a>
         </div>
     </nav>
     <header class="header">
@@ -222,7 +222,7 @@
             <p>Você está a um passo de ter todo o controle de seus gastos e ganhos.</p>
             <p>Aqui você tem um espaço todo pensado em você, com tudo em suas mãos, fácil de usar <br>
                tomando pouco tempo seu.</p>
-            <a href="{{route('cadastro')}}" class="contact-btn">Comece agora</a>
+            <a href="{{route('create')}}" class="contact-btn">Comece agora</a>
         </div>
         <div class="img-headline">
             <img style="max-width: 90%;" src="https://img.freepik.com/vetores-premium/calculadora-eletronica-sorridente-de-desenho-animado_253349-687.jpg?w=2000">
