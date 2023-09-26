@@ -17,8 +17,13 @@ class Conta extends Model
     {
         return $this->belongsTo(User::class, 'IdUsers', 'id');
     }
-    public function Conta()
+    public function receitas()
     {
-        return $this->hasMany(Conta::class, 'IdUsers', 'id');
+        return $this->hasMany(Receita::class, 'id');
     }
+    public function despesas()
+    {
+        return $this->hasMany(despesas::class, 'id');
+    }
+
 }

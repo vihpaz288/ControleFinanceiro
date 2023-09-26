@@ -42,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function Conta()
+    public function Contas()
     {
         return $this->hasMany(Conta::class, 'IdUsers', 'id');
     }

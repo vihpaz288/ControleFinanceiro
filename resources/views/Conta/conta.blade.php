@@ -123,20 +123,21 @@ label{
             <h1>Controle Financeiro</h1>
         </div>
         <div class="menu">
-        <a href="{{route('home')}}">Home</a>
-        <a href="{{route('create')}}">Cadastre-se</a>
+        <a href="{{route('acesso')}}">Home</a>
+        <a href="{{route('sair')}}">Sair</a>
         </div>
     </nav> 
     <div class="Login">
-        <form action="{{route('autenticacao')}}" method="POST">
+        <form action="{{route('store')}}" method="POST">
         @csrf    
         <div class="Caixa">
-           <h2 style="font-size:23px">Insira seu acesso</h2>
-           <label for="email">Email:</label>
-           <input type="email" name="email">
-           <label for="senha">Senha:</label>
-           <input type="password" name="password">
-           <button type="submit" class="button">ENTRAR</button>
+           <h2 style="font-size:23px">Insira seu dados da conta</h2>
+           <input type="hidden" name="IdUsers" value="{{auth()->user()->id}}">
+           <label for="nome">Nome:</label>
+           <input type="text" name="nome">
+           <label for="saldo">Saldo:</label>
+           <input type="float" name="saldo">
+           <button type="submit" class="button">Cadastra conta</button>
         </div>
         </form>
 </div>

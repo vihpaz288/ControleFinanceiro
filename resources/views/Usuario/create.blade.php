@@ -123,7 +123,7 @@ label{
             <h1>Controle Financeiro</h1>
         </div>
         <div class="menu">
-        {{-- <a href="{{route('home')}}">Home</a> --}}
+        <a href="{{route('home')}}">Home</a> 
         <a href="{{route('login')}}">Login</a>
         </div>
     </nav> 

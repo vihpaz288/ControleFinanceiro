@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acesso</title>
 </head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <style>
    @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 *{
@@ -70,7 +69,37 @@ body{
     letter-spacing: 3px;
 }
 
+.valor{
+    height:500px;
+    width: 600px;
+    margin-left:150px;
+    box-shadow: 9px 5px 10px #008080;
+    border:2px solid #008080;
+}
+.despesa{
+    height:500px;
+    width: 600px;
+    margin: 60px;
+    margin-left:150px;
+    box-shadow: 9px 5px 10px #008080;
+    border:2px solid #008080;
+}
+.despesa h2{
+    font-weight: 900;
+    font-size:20px;
+    color:#008080	;
+    padding:0;
+    margin:8px;
 
+}
+.valor h2{
+    font-weight: 900;
+    font-size:20px;
+    color:#008080	;
+    padding:0;
+    margin:8px;
+
+}
 input{
     background-color: #ecf0f1;
     display: flex;
@@ -115,7 +144,12 @@ input{
     letter-spacing: 2px;
     cursor: pointer;
 }
+label{
+    margin-left:30px;
+    font-size: 20px;
+    letter-spacing: 2px;
 
+}
 .button{
     display: inline-block;
     background: #008080;
@@ -143,61 +177,75 @@ section{
     padding:5%;
     margin:100px;
     text-align: center;
-    width: 100%;
-   
 }
 
+section h2{
+    width:100%;
+    font-size:50px;
+    margin:0;
+    font-family: 'Lobster', cursive;
+    font-weight: bold;
+    color:#008080	;
+    letter-spacing: 5px;
+}
 
-
+textarea{
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    margin-left: 160px;
+    border-radius:5px;
+    border: 1px solid #008080;
+}
+select{
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    margin-left: 230px;
+    margin-top:10px;
+    width:150px;
+    border-radius:5px;
+    border: 1px solid #008080;
+}
 
 </style>
 <body>
-    <nav class="navbar">
+   <nav class="navbar">
         <div class="logo">
-            <form action="" method="get" role="search">
-                <input class="search" type="text" name="search" placeholder="Buscar por despesa">
-                <button class="searchButton" type="submit">Pesquisar</button>
-            </form>
             <h1>Controle Financeiro</h1>
         </div>
         <div class="menu">
-            <a href="">relatorios</a>
-            <a href="{{route('conta')}}">Cadastra Conta</a>
-            <a href="{{route('receita')}}">Cadastra receita</a>
-            <a href="{{route('despesa')}}">Cadastra despesa</a>
+            <a href="{{route('acesso')}}">Home</a>
             <a href="{{route('sair')}}">Sair</a>
         </div>
     </nav> 
     <section>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Conta</th>
-                <th scope="col">Saldo</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($contas as $conta)
-            <tr>
-                <th scope="row">{{$conta->id}}</th>
-                <td>{{$conta->nome}}</td>
-                <td>{{$conta->saldo}}</td>
-                <td>
-                    <form action="{{route('destroy')}}" method="POST"  id="form-conta-{{ $conta->id }}>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="danger">Deletar</button>
-                    </form>
-                </td>
-                <td>Editar</td>
-            </tr>
-            @endforeach
-        </tbody>
-      </table>
-</section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+            <div class="valor">
+                <h2 style="font-size:23px">Cadastrar despesa:</h2>
+                <form action="{{route('store')}}" method="POST">
+                @csrf
+                <select name="IdContas" class="tipo" id="">
+                    <option selected disabled value="">Selecione</option>
+                    @foreach ($contas as $conta)
+                    <option value="{{$conta->id}}">{{$conta->nome}}</option>
+                    @endforeach
+                </select><br>
+                <label for="data">Data:</label>
+                <input type="date" name="data">
+                <label class="tipo" for="tipo"> Selecione o tipo </label><br>
+                <select name="tipo" class="tipo" id="tipo">
+                    <option selected disabled value="">Selecione</option>
+                    <option value="lazer">Lazer</option>
+                    <option value="essencial">Essencial</option>
+                    <option value="emergencia">Emergencia</option>
+                </select><br>
+                <label for="Valor">Valor:</label>
+                <input type="number" name="valor">
+                <label for="descricao">Descreva o gasto:</label><br>
+                <textarea name="descricao" id="" cols="35" rows="5" name="descricao"></textarea>
+                <button type="submit" class="button">Cadastrar</button>
+                </form>
+            </div>
 </body>
 </html>
