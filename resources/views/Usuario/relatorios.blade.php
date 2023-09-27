@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gastos</title>
+    <title>Relatórios</title>
 </head>
 <style>
      @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -60,20 +60,32 @@ body{
     border-top:4px solid #2E8B57;
     letter-spacing: 3px;
 }
+.opcao a{
+    font-weight: 900;
+    font-size:20px;
+    color:#008080	;
+    padding:0;
+    margin:0;
+    letter-spacing: 5px;
+}
+.opcao a:hover{
+    color:#2E8B57;
+    letter-spacing: 5px;
+}
 </style>
 <body>
-    <nav class="navbar"> 
+<nav class="navbar">
         <div class="logo">
             <h1>Controle Financeiro</h1>
         </div>
         <div class="menu">
-        <a href="">Imprimir</a>
         <a href="{{route('acesso')}}">Home</a>
-            <a href="#">Sair</a>
+        <a href="">Sair</a>
+        </div>
+        <div class="opcao">
+        <a href="{{route('ganhos')}}">Relatório de ganhos</a><br><br>
+        <a href="{{route('gastos')}}">Relatorio de gastos</a>
         </div>
     </nav> 
-    <div class="gastos">
-        
-    </div>
 </body>
 </html>

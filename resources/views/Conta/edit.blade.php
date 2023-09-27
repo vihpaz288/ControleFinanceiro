@@ -128,15 +128,16 @@ label{
         </div>
     </nav> 
     <div class="Login">
-        <form action="{{route('Conta.store')}}" method="POST">
+        <form action="{{route('update', $conta->id)}}" method="POST">
         @csrf    
+        @method('PUT')
         <div class="Caixa">
            <h2 style="font-size:23px">Insira seu dados da conta</h2>
            <input type="hidden" name="IdUsers" value="{{auth()->user()->id}}">
            <label for="nome">Nome:</label>
-           <input type="text" name="nome">
+           <input type="text" name="nome" value="{{$conta->nome}}">
            <label for="saldo">Saldo:</label>
-           <input type="float" name="saldo">
+           <input type="float" name="saldo" value="{{$conta->saldo}}">
            <button type="submit" class="button">Cadastra conta</button>
         </div>
         </form>

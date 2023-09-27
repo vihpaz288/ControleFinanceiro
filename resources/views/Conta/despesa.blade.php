@@ -223,7 +223,7 @@ select{
     <section>
             <div class="valor">
                 <h2 style="font-size:23px">Cadastrar despesa:</h2>
-                <form action="{{route('store')}}" method="POST">
+                <form action="{{route('despesa.store')}}" method="POST">
                 @csrf
                 <select name="IdContas" class="tipo" id="">
                     <option selected disabled value="">Selecione</option>

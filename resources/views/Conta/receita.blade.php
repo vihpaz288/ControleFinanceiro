@@ -223,9 +223,9 @@ select{
     <section>
             <div class="valor">
                 <h2 style="font-size:23px">Cadastrar Receita:</h2>
-                <form action="{{route('store')}}" method="POST">
+                <form action="{{route('receita.store')}}" method="POST">
                 @csrf
-                <select name="IdContas" class="tipo" id="">
+                <select name="IdContas" class="IdContas" id="">
                     <option selected disabled value="">Selecione</option>
                     @foreach ($contas as $conta)
                     <option value="{{$conta->id}}">{{$conta->nome}}</option>

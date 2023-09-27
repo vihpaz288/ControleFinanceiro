@@ -10,12 +10,21 @@ class DespesaController extends Controller
 {
     public function despesa()
     {
-       $contas = Conta::where('IdUsers', auth()->user()->id)->get();
-        return view ('Conta.despesa', compact('contas'));
+        $contas = Conta::where('IdUsers', auth()->user()->id)->get();
+        return view('Conta.despesa', compact('contas'));
     }
     public function store(Request $request)
     {
         $despesa = Despesa::create($request->all());
+
+        $conta = Conta::find($despesa->IdContas);
+
+        $subtracao = $conta->saldo - $despesa->valor;
+
+        $atualizarSaldo = $conta->update([
+            'saldo' => $subtracao
+        ]);
+
         $idDespesas = $despesa->Users_id;
         return redirect()->back();
     }
