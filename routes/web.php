@@ -28,12 +28,13 @@ Route::post('/Receita/store', [ReceitaController::class, 'store'])->name('receit
 
 Route::get('/Despesa/despesa', [DespesaController::class, 'despesa'])->name('despesa');
 Route::post('/Despesa/store', [DespesaController::class, 'store'])->name('despesa.store');
-
+Route::post('/despesa/pesquisa', [DespesaController::class, 'pesquisa']);
 
 
 Route::get('/Conta/relatorio', [ContaController::class, 'relatorio'])->name('relatorio');
 Route::get('/Conta/ganhos', [ContaController::class, 'ganhos'])->name('ganhos');
 Route::get('/Conta/gastos', [ContaController::class, 'gastos'])->name('gastos');
+Route::get('/Conta/pdfGastos', [ContaController:: class, 'pdfGastos'])->name('pdfGastos');
+Route::get('/Conta/pdfGanhos', [ContaController:: class, 'pdfGanhos'])->name('pdfGanhos');
 
-// Route::get('/gasto', [Usuarios::class, 'gasto'])->name('gasto');
-// Route::get('/ganho', [Usuarios::class, 'ganho'])->name('ganho');
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Conta;
 use App\Models\Despesa;
+use App\Models\Receita;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,31 +13,35 @@ class LoginController extends Controller
 {
     public function home()  
     {
-    //     if (auth()->check()) {
-    //         $despesas = Despesa::with('despesas')->where('usuarioID', auth()->user()->id)->get();
-    //     } else {
-    //         $despesas = 0;
-    //     }
-    //     $search = request('search');
-
-    //     if ($search) {
-    //         $despesas = Despesa::where([
-    //             ['descricao', 'like', '%' . $search . '%']
-    //         ])->get();
-    //     } else {
-    //         $despesas = Despesa::all();
-    //     }
-
-    //     return view('Usuario.home', compact('despesa', 'despesas'));
-    // }
         return view('Usuario.home');
     }
-      
+    
     public function acesso()
     {
-        $contas = Conta::where('IdUsers', auth()->user()->id)->get();
-        return view('Usuario.acesso', compact('contas'));
-    }
+            //  if (auth()->check()) {
+            //      $despesas = Despesa::with('descricao')->where('IdContas', auth()->user()->id)->get();
+            //  } else {
+            //      $despesas = 0;
+            //  }
+            // $search = request('search');
+    
+            // if ($search) {
+            //     $despesas = Despesa::where([
+            //         ['descricao', 'like', '%' . $search . '%']
+            //     ])->get();
+            // } else {
+            //     $despesas = Despesa::all();
+            // }
+           
+           $valoresContas = Conta::where('IdUsers', auth()->user()->id)->sum('saldo');
+          
+            $contas = Conta::where('IdUsers', auth()->user()->id)->get();
+            return view('Usuario.acesso', compact( 'contas', 'valoresContas'));
+        }
+        
+
+            // return view('Usuario.acesso', compact('contas'));
+    
     public function create()
     {
         return view('Usuario.create');

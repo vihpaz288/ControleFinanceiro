@@ -79,12 +79,17 @@
 </style>
 
 <body>
+    <input type="hidden" value="{{ csrf_token() }}" id="token">
     <nav class="navbar">
         <div class="logo">
+            <form action="" method="get" role="search">
+                <input class="search" type="text" name="search" placeholder="Buscar por despesa">
+                <button class="searchButton" type="submit">Pesquisar</button>
+            </form>
             <h1>Controle Financeiro</h1>
         </div>
         <div class="menu">
-            <a href="">Imprimir</a>
+            <a href="{{ route('pdfGastos') }}">Imprimir</a>
             <a href="{{ route('acesso') }}">Home</a>
             <a href="#">Sair</a>
         </div>
@@ -115,6 +120,28 @@
             </table>
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+    <script>
+        $('.search').on('input', function() {
+
+            let _token = $('#token').val();
+            let pesquisa = $('.search').val();
+            $.ajax({
+                type: 'POST',
+                url: '/despesa/pesquisa',
+                data: {
+                    _token,
+                    pesquisa
+                },
+                success: function(resposta) {
+                    console.log(resposta);
+                    $('.table').html(resposta)
+                }
+
+            })
+        })
+    </script>
 </body>
 
 </html>

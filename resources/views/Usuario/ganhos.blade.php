@@ -84,7 +84,7 @@
             <h1>Controle Financeiro</h1>
         </div>
         <div class="menu">
-            <a href="">Imprimir</a>
+            <a href="{{route('pdfGanhos')}}">Imprimir</a>
             <a href="{{ route('acesso') }}">Home</a>
             <a href="#">Sair</a>
         </div>

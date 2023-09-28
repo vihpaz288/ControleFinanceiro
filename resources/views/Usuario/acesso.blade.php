@@ -158,10 +158,7 @@
 <body>
     <nav class="navbar">
         <div class="logo">
-            <form action="" method="get" role="search">
-                <input class="search" type="text" name="search" placeholder="Buscar por despesa">
-                <button class="searchButton" type="submit">Pesquisar</button>
-            </form>
+           
             <h1>Controle Financeiro</h1>
         </div>
         <div class="menu">
@@ -173,7 +170,7 @@
         </div>
     </nav>
     <section>
-        <h2>Saldo atual:</h2>
+        <h2>Saldo atual:{{$valoresContas}}</h2>
         <table class="table">
             <thead>
                 <tr>

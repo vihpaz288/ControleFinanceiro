@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Conta;
 use App\Models\Despesa;
 use App\Models\Receita;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class ContaController extends Controller
 {
@@ -25,6 +27,38 @@ class ContaController extends Controller
         $gastos = Despesa::with('conta')->get();
         $dataAtual = date('d-m-Y H:i:s');
         return view('Usuario.gastos', compact('dataAtual', 'gastos'));
+    }
+    public function pdfGastos()
+    {
+
+        $user = User::with(['contas' => function ($query) {
+            $query->withSum('despesas', 'valor');
+            $query->with('despesas');
+        }])->where('id', auth()->user()->id)->first();
+        $valorTotal = null;
+        foreach ($user->contas as $conta) {
+            $valorTotal = $valorTotal + $conta->despesas_sum_valor;
+        }
+        $gastos = $user->contas;
+
+        $pdf = PDF::loadview('Usuario.pdfGastos', compact('gastos', 'valorTotal'));
+        return $pdf->setPaper('a4')->stream('Todas_despesas');
+    }
+    public function pdfGanhos()
+    {
+
+        $user = User::with(['contas' => function ($query) {
+            $query->withSum('receitas', 'valor');
+            $query->with('receitas');
+        }])->where('id', auth()->user()->id)->first();
+        $valorTotal = null;
+        foreach ($user->contas as $conta) {
+            $valorTotal = $valorTotal + $conta->receitas_sum_valor;
+        }
+        $ganhos = $user->contas;
+
+        $pdf = PDF::loadview('Usuario.pdfGanhos', compact('ganhos', 'valorTotal'));
+        return $pdf->setPaper('a4')->stream('Todas_despesas');
     }
     public function conta()
     {

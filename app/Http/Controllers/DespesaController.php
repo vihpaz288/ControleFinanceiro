@@ -28,4 +28,10 @@ class DespesaController extends Controller
         $idDespesas = $despesa->Users_id;
         return redirect()->back();
     }
+
+    public function pesquisa(Request $request)
+    {
+        $gastos = Despesa::where('descricao', 'LIKE', "%$request->pesquisa%")->get();
+        return view('Usuario.table-despesa', compact('gastos'));
+    }
 }

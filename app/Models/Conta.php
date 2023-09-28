@@ -23,7 +23,6 @@ class Conta extends Model
     }
     public function despesas()
     {
-        return $this->hasMany(despesas::class, 'id');
+        return $this->hasMany(Despesa::class, 'IdContas', 'id');
     }
-
 }
