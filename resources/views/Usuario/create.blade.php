@@ -118,6 +118,7 @@ label{
 
 </style>
 <body>
+    <input type="hidden" id="_token" value="{{ csrf_token() }}">
    <nav class="navbar">
         <div class="logo">
             <h1>Controle Financeiro</h1>
@@ -140,7 +141,12 @@ label{
                 <input type="password" name="password">
                 <button type="submit" class="button">Cadastre-se</button>
             </form>
+
+            
         </div>
     </div>
+
+
+
 </body>
 </html>

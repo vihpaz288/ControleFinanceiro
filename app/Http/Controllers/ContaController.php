@@ -66,24 +66,51 @@ class ContaController extends Controller
     }
     public function store(Request $request)
     {
-
         $Conta = Conta::create($request->all());
         $idUsers = $Conta->Users_id;
         return view('Conta.conta');
     }
     public function destroy($id)
     {
-        Conta::FindOrFail($id)->delete();
-        return view('Usuario.acesso');
+        $conta = Conta::Find($id);
+
+        if (!$conta) {
+            $response['erro']   = true;
+            $response['msg']    = 'Conta não encontrada!';
+            return response()->json($response, 404);
+        }
+
+        if (isset($conta) && $conta->delete()) {
+            $response['error']  = false;
+            $response['msg']    = 'Conta deletada com sucesso!';
+
+            return response()->json($response, 200);
+        }
+
+        $response['erro']   = true;
+        $response['msg']    = 'Erro ao deletar conta';
+        $response['conta']  = $conta;
+        return response()->json($response, 500);
     }
     public function edit($id)
     {
         $conta = Conta::Find($id);
-        return view('Conta.edit', compact('conta'));
+
+        if ($conta) {
+            $response['error']   = false;
+            $response['conta']   = $conta;
+            return response()->json($response, 200);
+        }
     }
     public function update(Request $request, $id)
     {
-        Conta::FindOrFail($id)->update($request->all());
-        return redirect()->route('acesso');
+        $conta = Conta::Find($id);
+        
+        if ($conta && $conta->update($request->all())) {
+            $response['error'] = false;
+            $response['msg'] = 'Conta atualizada com sucesso';
+            return response()->json($response, 200);
+
+        }
     }
 }

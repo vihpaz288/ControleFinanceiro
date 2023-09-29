@@ -34,7 +34,5 @@ Route::post('/despesa/pesquisa', [DespesaController::class, 'pesquisa']);
 Route::get('/Conta/relatorio', [ContaController::class, 'relatorio'])->name('relatorio');
 Route::get('/Conta/ganhos', [ContaController::class, 'ganhos'])->name('ganhos');
 Route::get('/Conta/gastos', [ContaController::class, 'gastos'])->name('gastos');
-Route::get('/Conta/pdfGastos', [ContaController:: class, 'pdfGastos'])->name('pdfGastos');
-Route::get('/Conta/pdfGanhos', [ContaController:: class, 'pdfGanhos'])->name('pdfGanhos');
-
-
+Route::get('/Conta/pdfGastos', [ContaController::class, 'pdfGastos'])->name('pdfGastos');
+Route::get('/Conta/pdfGanhos', [ContaController::class, 'pdfGanhos'])->name('pdfGanhos');
